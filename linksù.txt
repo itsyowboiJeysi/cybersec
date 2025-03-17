@@ -1,0 +1,5 @@
+attack targets - https://www.ispartnersllc.com/blog/common-targets-for-cyberattacks/?utm_source=chatgpt.com
+
+phishing - https://www.ibm.com/think/topics/phishing#:~:text=Phishing%20is%20a%20type%20of,a%20form%20of%20social%20engineering.
+
+malware - https://www.malwarebytes.com/malware

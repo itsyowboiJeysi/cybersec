@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body { 
+            padding-top: 3%;
+            padding-left: 15%;
+            background-color: black;
+            height: 80vh;
+            margin: 0; 
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: row;
+            align-items: center;
+            align-content: center;
+        }
+      img {
+          width: 50%;
+          height: auto;
+        }
+
+        .box {
+         padding: 30% 0% 25% 0%;
+          width: 150%;
+          height: auto;
+          border-color: white;
+          border-style: solid;
+          display: flex;
+          flex-direction: column;
+          border-radius: 5%;
+          align-items: center;
+         align-content: center;
+   
+        }
+        
+        .forLoginButton  {
+           padding: 5% 15%;
+           background: linear-gradient(175deg, #ff00ff, #8a2be2);
+           color: white;
+           font-size: 1rem;
+           margin-top: 15%;
+           align-items: center;
+           margin-left: 25%;
+           
+        }
+        
+       .box input{
+           padding: 7% 15%;
+           border-radius: 5%;
+           border-style: solid;
+           background-color: black;
+           color: white;
+        }
+        
+        .box h2 {
+          text-align: center;
+
+        }
+
+        input::placeholder  {
+         color: white;
+
+        }
+
+       a   {
+         color:#ff00ff ;
+
+        }
+       
+    </style>
+</head>
+<body>
+
+    <img src="logo1.png" alt="logo" class="forlogo">
+    <div class="container">
+
+        <div class="box">
+            <form action="POST">
+                <h2>LOGIN</h2>
+                <p>Username</p>
+                <input type="text" placeholder="Enter Username">
+                <p>Password</p>
+                <input type="password" placeholder="Enter Password" name="" id=""> <br>
+                <button class="forLoginButton">Login</button>
+
+                <p>Don't have an Account? <a href="signup.html">Sign Up</a></p>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
