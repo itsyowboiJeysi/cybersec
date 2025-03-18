@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DefendSec Solutions</title>
+    <link rel="icon" type="image/png" href="ico.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap"
+      rel="stylesheet" />
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.75/build/spline-viewer.js"></script>
+   
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back" />
+   <style>
+    
+    body::-webkit-scrollbar {
+        display: none;
+    }
+    
+    body {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body,
+    html {
+        height: 100%;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        background: rgb(0, 0, 0);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        font-family: "Black Ops One", system-ui;
+    }
+
+    * p, .challenge-list li {
+        color: white;
+        font-family:  system-ui;
+        font-weight: lighter;
+    }
+    .background{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(1.2);
+        z-index: -1;
+    }
+    
+    .navbar {
+        display: flex;
+        justify-content: space-around;
+        height: 100px;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        background-color: rgba(255, 255, 255, 0.01); 
+        backdrop-filter: blur(15px); 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0 0 15px 15px;
+        transition: background-color 0.3s;
+    }
+    
+    .navbar:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .menu {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        gap: 60px;
+    }
+    
+    .logo {
+        font-size: 2rem;
+        background: linear-gradient(45deg, #000dff, #ff00e6, #ff7700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .menu li {
+        font-size: 1rem;
+        transition: 0.4s;
+    }
+
+    .menu a, .get{
+        text-decoration: none;
+        color: white;
+        font-size: 1rem;
+        transition: 0.4s;
+    }
+    
+    .menu li:hover, li a:hover {
+        transform: scale(1.2);
+        background: linear-gradient(45deg, #000dff, #ff00e6, #ff7700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .btn1 {
+        color: white;
+        padding: 15px 50px;
+        border-radius: 10px;
+        border: none;
+        background: linear-gradient(45deg, #000dff, #ff00e6, #ff7700);
+        box-shadow: 0px 0px 20px rgba(195, 43, 226, 0.714);
+        transition: 0.4s;
+        font-weight: bold;
+    }
+    
+    .btn1:hover {
+        box-shadow: 0px 0px 20px rgba(226, 43, 43, 1);
+        transform: scale(1.2);
+    }
+    
+    .mainarea {
+    display: flex;
+    margin-top: 100px;
+    padding: 30px;
+    padding-bottom: 230px; 
+    min-height: calc(100vh - 100px);
+}
+    
+    .content-area {
+        flex: 1;
+        padding: 20px;
+    }
+    
+    .logo2 {
+        width: 12%;
+        height: auto;
+    }
+    
+   
+    aside {
+        width: 250px;
+        padding: 20px;
+        margin-right: 30px;
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-right: 2px solid;
+        border-image: linear-gradient(45deg, #000dff, #ff00e6, #ff7700) 1;
+        height: fit-content;
+        border-radius: 10px;
+    }
+    
+    aside ol {
+        list-style-position: inside;
+        margin-top: 15px;
+    }
+    
+    aside li {
+        margin-bottom: 15px;
+        transition: 0.3s;
+    }
+    
+    aside li:hover {
+        transform: translateX(5px);
+    }
+    
+    aside a {
+        text-decoration: none;
+        color: white;
+        transition: 0.3s;
+    }
+    
+    aside a:hover {
+        background: linear-gradient(45deg, #000dff, #ff00e6, #ff7700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+      
+    }
+    
+    aside:hover a.active:not(:hover) {
+    background: none;
+    -webkit-text-fill-color: white;
+}
+    .footer {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    h1 {
+        margin-bottom: 20px;
+        background: linear-gradient(150deg, #ff00e6, #ff7700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    h2 {
+        margin: 25px 0 15px;
+        background: linear-gradient(150deg, #000dff, #ff00e6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        margin: 20px 0 10px;
+        color: #ff7700;
+        font-size: 1.2rem;
+    }
+    
+    p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+    
+    .backarrow {
+        font-size: 2.5rem;
+        background: linear-gradient(45deg, #000dff, #ff00e6, #ff7700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+
+    .backarrow:hover {
+        font-size: 3rem;
+    }
+    
+    .target-section {
+        margin-bottom: 30px;
+    }
+    
+    .industries-list {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        border-left: 2px solid;
+        border-image: linear-gradient(45deg, #000dff, #ff00e6, #ff7700) 1;
+    }
+    
+    .industries-list p {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #ff00e6;
+    }
+    
+    .industries-list ul {
+        list-style-type: none;
+    }
+    
+    .industries-list li {
+        margin: 10px 0;
+        padding-left: 20px;
+        position: relative;
+    }
+    
+    .industries-list li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #ff7700;
+    }
+    
+    .industries-list a {
+        text-decoration: none;
+        color: white;
+        transition: 0.3s;
+    }
+    
+    .industries-list a:hover {
+        background: linear-gradient(45deg, #000dff, #ff00e6, #ff7700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .section-box {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        border-left: 2px solid;
+        border-image: linear-gradient(45deg, #000dff, #ff00e6, #ff7700) 1;
+    }
+    
+    .highlight {
+        color: #ff00e6;
+        font-weight: bold;
+    }
+    
+    .stat {
+        color: #ff7700;
+        font-weight: bold;
+    }
+    
+    ul.challenge-list {
+        list-style-type: none;
+        margin: 15px 0;
+    }
+    
+    ul.challenge-list li {
+        margin-bottom: 15px;
+        padding-left: 25px;
+        position: relative;
+    }
+    
+    ul.challenge-list li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #000dff;
+        font-weight: bold;
+    }
+
+   .active {
+        background: linear-gradient(45deg, #000dff, #ff00e6, #ff7700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    #smb{
+    scroll-margin-top: 100px;
+   
+}
+
+#healthcare{
+    scroll-margin-top: 110px;
+}
+
+#government{
+    scroll-margin-bottom: 50px;
+}
+
+   </style>
+
+  </head>
+  <body>
+    <spline-viewer class="background" url="https://prod.spline.design/iLpwYDArnt6gIoth/scene.splinecode"></spline-viewer>
+    <nav class="navbar ">
+      <span class="material-symbols-outlined backarrow" onclick="window.location.href='index.html'">
+        arrow_back
+      </span>
+      <img src="logo2.png" class="logo2">
+    </nav>
+
+    <main class="mainarea">
+      <aside>
+        <h3 class="">Navigation</h3>
+        <ol>
+            <li><a href="#attack-targets" class="active">Attack Targets</a></li>
+            <li><a href="Phishing.html">Phishing Attack</a></li>
+            <li><a href="">Malware Attack</a></li>
+        </ol>
+      </aside>
+
+      <div class="content-area">
+        <section id="attack-targets" class="target-section">
+          <h1>Attack Targets</h1>
+          <p>These sectors are often targeted due to their valuable data and sometimes weaker cybersecurity defenses. Common threats include ransomware, which can cripple operations; phishing emails, which trick individuals into revealing sensitive information through a malicious code; and data breaches, which lead to unauthorized access to personal and financial data.</p>
+          <p>Another common type of cyber attack for these industries is distributed denial of service (DDoS) attacks. In DDoS attacks, a perpetrator seeks to make a machine or network resource unavailable to its intended users by temporarily or indefinitely disrupting the services of a host connected to the Internet.</p>
+        </section>
+
+        <div id="industries" class="industries-list">
+          <p>What Industries Are Prime Targets for Cyberattacks?</p>
+          <ul>
+              <li><a href="#smb" >Small and Medium-Sized Businesses (SMBs)</a></li>
+              <li><a href="#healthcare">Healthcare Organizations</a></li>
+              <li><a href="#government">Government Agencies</a></li>
+          </ul>
+        </div>
+
+        <div id="smb" class="section-box">
+          <h1>Small and Medium-Sized Businesses (SMBs)</h1>
+          <p>SMBs have been identified as some of the <span class="highlight">most common targets for cybercriminals</span>. This is mainly because of their <span class="highlight">limited resources and access to cybersecurity expertise</span>, which makes it challenging to implement the proper cybersecurity controls and best practices.</p>
+          
+          <p>Recent statistics show that as much as <span class="stat">43%</span> of cyberattacks target small businesses, with <span class="stat">60%</span> of SMBs going out of business within six months of a successful attack.</p>
+          
+          <p>A subset of this problem <span class="highlight">includes small family offices</span>. Cybercrime aimed at businesses operating in their homes and managing their assets has increased significantly. Recent news showed that approximately <span class="stat">79%</span> of North American families operating in family offices say that the likelihood of a cyberattack has increased.</p>
+          
+          <h2>SMB Challenges</h2>
+          <p>SMB challenges that significantly affect their cybersecurity include the following:</p>
+          
+          <ul class="challenge-list">
+            <li><span class="highlight">Lack of budget.</span> It is difficult for SMBs to invest in advanced cybersecurity solutions and hire dedicated information systems staff as finances are usually limited to operational expenses keeping the lights on.</li>
+            
+            <li><span class="highlight">Lack of threat intelligence.</span> Many SMB owners and employees are not aware of the real world dangers of modern IT systems, or cybersecurity best practices. This lack of awareness makes them more susceptible to social engineering tactics like spear phishing, where clicking a malicious link and entering personal information can spell disaster if it gives an attacker access to sensitive resources like financial or confidential data.</li>
+            
+            <li><span class="highlight">Lack of security measures.</span> Because of SMBs' limitations in budget and awareness, they often rely on older technologies or outdated best practices that can potentially leave them more vulnerable to modern cyberattacks, which are evolving all the time.</li>
+          </ul>
+          
+          <p>Ransomware, phishing, and malware are all serious threats to these businesses, which is why proper protection and employee education are so important. As cybersecurity threats continue to become more advanced, older safeguards and security measures become ineffective and leave SMBs more vulnerable.</p>
+        </div>
+        
+       
+        <div id="healthcare" class="section-box">
+          <h1>Healthcare Organizations</h1>
+          <p>Healthcare organizations are frequent targets of cyberattacks because they store large amounts of sensitive patient data, making them attractive for identity theft and financial fraud. Additionally, the critical nature of healthcare services creates urgency, making organizations more likely to pay ransoms to regain access to their systems.</p>
+        
+            <p>Damage caused by healthcare cyber attacks includes the following:</p>
+          <ul class="challenge-list">
+
+            <li>Danger to patient safety. When malicious software like ransomware disrupts hospital operations, administrative tasks, and general IT systems, it increases the chances of a direct impact on patient care. If the hospital is disrupted to the point where patient records are no longer accessible, or medication cannot be dispensed, people’s lives could be put in danger. In extreme cases, manual processes must be used with physical registers and record keeping, which is not efficient or secure.</li>
+            <li>Imposed regulatory fines. Healthcare organizations must comply with strict regulations like HIPAA. Data breaches can result in severe fines and even legal action if they are severe enough.</li>
+            <li>Damage to reputation. Patients trust healthcare providers with extremely confidential information. A breach can destroy that trust and damage the organization’s reputation, negatively affecting business operations.</li>
+         </ul>   
+        </div>
+        
+     
+        <div id="government" class="section-box">
+          <h1>Government Agencies</h1>
+          <p>Government agencies are another common target for cyberattacks. They hold classified information and play a vital role in national security, making it a desirable target for cybercriminals. </p>
+        <p>Different groups of threat actors target government departments and agencies that might not have a monetary goal in mind. These groups include nation-state actors or hacktivist groups that may target government agencies for many <span class="highlight">different reasons, like espionage, sabotage, or even political reasons.</span> </p>
+            
+        <p>The effects of an attack on a government agency may lead to the following outcomes:</p>
+        <ul class="challenge-list ">
+            <li><span class="highlight">National security risks. </span>Leaked classified information can threaten military operations, strain diplomatic relations, or even cause issues with critical infrastructure like power plants, waterworks, and other essential services.</li>
+            <li><span class="highlight">Economic impact.</span> Cyberattacks have the potential to disrupt government services, which can lead to downtime and erode public trust over time. Citizens need to have faith in the government’s ability to protect sensitive data, and data breaches damage that trust.</li>
+            <li><span class="highlight">Geopolitical tensions.</span> Nation-state actors have the ability to use cyberattacks to wage political warfare and escalate tensions between countries, which can potentially lead to real-world conflicts.</li>
+        </ul>
+       
+        </div>
+      </div>
+    </main>
+    
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+         
+          document.getElementById('year').textContent = new Date().getFullYear();
+          
+         
+          const fadeElements = document.querySelectorAll('.fade-in');
+          
+        
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+             
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+              } else {
+               
+              }
+            });
+          }, {
+            root: null, 
+            threshold: 0.1, 
+            rootMargin: '0px 0px -50px 0px' 
+          });
+          
+          
+          fadeElements.forEach(element => {
+            observer.observe(element);
+          });
+        });
+    </script>
+    </body>
+</html>

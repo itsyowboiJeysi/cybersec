@@ -10,8 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
    
    
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.75/build/spline-viewer.js"></script>
@@ -21,10 +20,10 @@
   </head>
   <body>
     <spline-viewer class="background" url="https://prod.spline.design/iLpwYDArnt6gIoth/scene.splinecode"></spline-viewer>
-    <nav class="navbar">
+    <nav class="navbar fade-in">
       <img src="logo2.png" class="logo2">
       <ul class="menu">
-        <li>Home</li>
+        <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#content">Content</a></li>
         <li><a href="#dev">Dev</a></li>
@@ -33,15 +32,15 @@
     </nav>
 
     <main class="mainarea">
-      <h1 class="text1">DefendSec Solutions</h1>
-      <h3 class="text2">Fortifying Your Future, One Byte at a Time</h3>
-      <button class="btn2" onclick="window.location.href='#get'"> Get Started</button>
+      <h1 class="text1 fade-in" id="home">DefendSec Solutions</h1>
+      <h3 class="text2 fade-in">Fortifying Your Future, One Byte at a Time</h3>
+      <button class="btn2 fade-in delay-100" onclick="window.location.href='#get'"> Get Started</button>
       
 
         
       <section class="about-us" id="about">
         <h1>About Us</h1>
-        <div class="about-content">
+        <div class="about-content fade-in delay-100">
             <p>
                 Welcome to <strong>DefendSec Solutions</strong> – your trusted partner in safeguarding your digital world. 
                 Our mission is to provide robust, innovative, and practical cybersecurity solutions that protect individuals 
@@ -65,21 +64,43 @@
 
 
 
-      <div class="fordesc">
+      <div class="fordesc fade-in delay-100">
         <div class="description">
-          <h1 class="text01" id="get">The Importance of Cybersecurity</h1>
-        <p class="text011">Cyber threats are rapidly evolving, from phishing and ransomware to malware and social
-           engineering. Hackers exploit weaknesses in systems, software, and human behavior to gain unauthorized access to sensitive information.
-
-          One of the most common tactics is phishing, where attackers trick individuals into sharing confidential data through fake emails or links. Similarly, ransomware attacks lock critical files, demanding a ransom for recovery.</p>
+          <div class="text-content">
+            <h1 class="text01" id="get">The Importance of Cybersecurity</h1>
+            <p class="text011">Cyber threats are rapidly evolving, from phishing and ransomware to malware and social
+              engineering. Hackers exploit weaknesses in systems, software, and human behavior to gain unauthorized access to sensitive information.
+    
+              One of the most common tactics is phishing, where attackers trick individuals into sharing confidential data through fake emails or links. Similarly, ransomware attacks lock critical files, demanding a ransom for recovery.</p>
+          </div>
+          <div class="video-container">
+            <video src="cyber.mp4" autoplay class="fade-in left"></video>
+          </div>
         </div>
+       
       </div>
 
-      <h1 class="text3" id="content">Key Cybersecurity Principles</h1>
-      <div class="forcards">
-        <div class="card1"><h2>click</h2></div>
-        <div class="card2"><h2>click</h2></div>
-        <div class="card3"><h2>click</h2></div>
+      <h1 class="text3 fade-in delay-100" id="content">Key Cybersecurity Principles</h1>
+      <div class="forcards fade-in delay-100">
+
+        <div class="card1">
+          <img src="attacktargets.jpeg" alt="">
+            <h1>Attack Targets</h1>
+             <p>These sectors are often targeted due to their valuable data and sometimes weaker cybersecurity defenses.</p>
+             <a href="attack.html">See more</a>
+        </div>
+        <div class="card2">
+          <img src="phishing.png" alt="">
+          <h1>Phishing Attack</h1>
+          <p>Phishing is a common cyber threat that uses deceptive emails to trick individuals into sharing sensitive information.</p>
+          <a href="Phishing.html">See more</a>
+        </div>
+        <div class="card3">
+          <img src="malwarec.jpg" alt="">
+            <h1>Malware Infections</h1>
+            <p>Malware is malicious software that infects systems, steals data, and disrupts operations.</p>
+            <a href="">See more</a>
+        </div>
       </div>
 
 
@@ -88,11 +109,25 @@
 
 
 
-      <h1 class="text4" id="dev">Developers</h1>  
-      <div class="forcards1">
-        <div class="card4"><h2>for Caille</h2></div>
-        <div class="card5"><h2>for Jc</h2></div>
-        <div class="card6"><h2>for Ming</h2></div>
+      <h1 class="text4 fade-in delay-200" id="dev">Developers</h1>  
+      <div class="forcards1 fade-in delay-100">
+        <div class="card4">
+            <h1>Caille</h1>
+            <p>Project Manager/IT Student</p>
+            <a href="">See more</a>
+
+
+        </div>
+        <div class="card5">
+          <h1>Jeysi</h1>
+          <p>Normal Citizen/IT Student</p>
+          <a href="">See more</a>
+        </div>
+        <div class="card6">
+          <h1>Alexander</h1>
+          <p>Programmer/It Student</p>
+          <a href="">See more</a>
+        </div>
       </div>
 
      
@@ -101,7 +136,43 @@
 
     </main>
     <footer class="footer">
+         <p>Project in Cybersecurity</p>
       <p>&copy; <span id="year"></span> DefendSec Solutions. All Rights Reserved.</p>
     </footer>
+
+
+    <script>
+     
+
+document.addEventListener('DOMContentLoaded', function() {
+ 
+  document.getElementById('year').textContent = new Date().getFullYear();
+  
+ 
+  const fadeElements = document.querySelectorAll('.fade-in');
+  
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+     
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        
+      } else {
+       
+      }
+    });
+  }, {
+    root: null, 
+    threshold: 0.1, 
+    rootMargin: '0px 0px -50px 0px' 
+  });
+  
+  
+  fadeElements.forEach(element => {
+    observer.observe(element);
+  });
+});
+    </script>
   </body>
 </html>
