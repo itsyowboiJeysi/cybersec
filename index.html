@@ -16,7 +16,7 @@
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.75/build/spline-viewer.js"></script>
    
     <style>
-      /* Modal styles */
+     
       .modal-overlay {
           position: fixed;
           top: 0;
@@ -121,12 +121,13 @@
       .profile-image {
           width: 120px;
           height: 120px;
-          border-radius: 50%;
           object-fit: cover;
           border: 3px solid transparent;
           border-image: linear-gradient(45deg, #000dff, #ff00e6, #ff7700) 1;
           margin-bottom: 20px;
       }
+
+
     </style>
 
   </head>
@@ -186,7 +187,7 @@
               One of the most common tactics is phishing, where attackers trick individuals into sharing confidential data through fake emails or links. Similarly, ransomware attacks lock critical files, demanding a ransom for recovery.</p>
           </div>
           <div class="video-container">
-            <video src="cyber.mp4" autoplay class="fade-in left"></video>
+            <video src="cyber.mp4" autoplay loop muted class="fade-in left"></video>
           </div>
         </div>
        
@@ -195,19 +196,19 @@
       <h1 class="text3 fade-in delay-100" id="content">Key Cybersecurity Principles</h1>
       <div class="forcards fade-in delay-100">
 
-        <div class="card1">
+        <div class="card1" onclick="window.location.href='attack.html'">
           <img src="attacktargets.jpeg" alt="">
             <h1>Attack Targets</h1>
              <p>These sectors are often targeted due to their valuable data and sometimes weaker cybersecurity defenses.</p>
              <a href="attack.html">See more</a>
         </div>
-        <div class="card2">
+        <div class="card2" onclick="window.location.href='Phishing.html'">
           <img src="phishing.png" alt="">
           <h1>Phishing Attack</h1>
           <p>Phishing is a common cyber threat that uses deceptive emails to trick individuals into sharing sensitive information.</p>
           <a href="Phishing.html">See more</a>
         </div>
-        <div class="card3">
+        <div class="card3" onclick="window.location.href='ransomware.html'">
           <img src="malwarec.jpg" alt="">
             <h1>Malware Infections</h1>
             <p>Malware is malicious software that infects systems, steals data, and disrupts operations.</p>
@@ -296,7 +297,7 @@
         observer.observe(element);
       });
       
-      // Person data for modals
+    
       const personData = {
         caille: {
             name: "Caille Louis F. Aquino",
@@ -327,13 +328,13 @@
         }
       };
 
-      // Modal elements
+     
       const modalOverlay = document.getElementById('modalOverlay');
       const modalClose = document.getElementById('modalClose');
       const modalContent = document.getElementById('modalContent');
       const seeMoreButtons = document.querySelectorAll('.see-more');
 
-      // Open modal with person data
+     
       function openModal(person) {
           const data = personData[person];
           
@@ -372,7 +373,7 @@
           modalContent.innerHTML = content;
           modalOverlay.classList.add('active');
           
-          // Prevent body scrolling when modal is open
+          
           document.body.style.overflow = 'hidden';
       }
 
@@ -399,7 +400,7 @@
           }
       });
       
-      // Close on escape key
+
       document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
               closeModal();
