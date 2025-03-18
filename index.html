@@ -15,7 +15,119 @@
    
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.75/build/spline-viewer.js"></script>
    
-   
+    <style>
+      /* Modal styles */
+      .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.7);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+      }
+      
+      .modal-overlay.active {
+          opacity: 1;
+          pointer-events: all;
+      }
+      
+      .modal {
+          background-color: rgba(15, 15, 20, 0.95);
+          width: 90%;
+          max-width: 600px;
+          border-radius: 25px;
+          padding: 30px;
+          box-shadow: 0 15px 40px rgba(195, 43, 226, 0.3);
+          position: relative;
+          transform: translateY(20px);
+          opacity: 0;
+          transition: all 0.3s ease;
+          border: 1px solid rgba(0, 0, 255, 0.3);
+      }
+      
+      .modal-overlay.active .modal {
+          transform: translateY(0);
+          opacity: 1;
+      }
+      
+      .modal-close {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          font-size: 24px;
+          cursor: pointer;
+          color: #fff;
+          background: none;
+          border: none;
+      }
+      
+      .modal h2 {
+          font-size: 28px;
+          margin-bottom: 10px;
+          background: linear-gradient(45deg, #000dff, #ff00e6, #ff7700);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+      }
+      
+      .modal h3 {
+          font-size: 18px;
+          margin-bottom: 20px;
+          color: #fff;
+      }
+      
+      .modal-content {
+          margin-top: 20px;
+          font-family: system-ui;
+      }
+      
+      .bio-section {
+          margin-bottom: 20px;
+          text-align: left;
+      }
+      
+      .bio-section h4 {
+          margin-bottom: 10px;
+          color: #ff00e6;
+      }
+      
+      .bio-section p {
+          font-weight: lighter;
+          line-height: 1.6;
+      }
+      
+      .skills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 10px;
+      }
+      
+      .skill {
+          background: linear-gradient(45deg, rgba(0, 13, 255, 0.2), rgba(255, 0, 230, 0.2));
+          color: #fff;
+          padding: 5px 15px;
+          border-radius: 20px;
+          font-size: 14px;
+          border: 1px solid rgba(0, 0, 255, 0.3);
+      }
+      
+      .profile-image {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 3px solid transparent;
+          border-image: linear-gradient(45deg, #000dff, #ff00e6, #ff7700) 1;
+          margin-bottom: 20px;
+      }
+    </style>
 
   </head>
   <body>
@@ -47,12 +159,12 @@
                 and businesses from emerging cyber threats.
             </p>
             <p>
-                At <strong>DefendSec Solutions</strong>, we believe that security is not just about technology — it’s about 
+                At <strong>DefendSec Solutions</strong>, we believe that security is not just about technology — it's about 
                 trust. Our team of cybersecurity experts works tirelessly to develop high-quality solutions tailored to 
                 meet the diverse security needs of organizations worldwide.
             </p>
             <p>
-                Whether it’s ensuring <strong>Confidentiality</strong>, <strong>Integrity</strong>, or 
+                Whether it's ensuring <strong>Confidentiality</strong>, <strong>Integrity</strong>, or 
                 <strong>Availability</strong> of data, our company thrives on delivering excellence in digital protection. 
                 Our services include risk assessment, network security, vulnerability management, and incident response.
             </p>
@@ -104,35 +216,24 @@
       </div>
 
 
-    
-
-
-
-
       <h1 class="text4 fade-in delay-200" id="dev">Developers</h1>  
       <div class="forcards1 fade-in delay-100">
         <div class="card4">
             <h1>Caille</h1>
             <p>Project Manager/IT Student</p>
-            <a href="">See more</a>
-
-
+            <a href="#" class="see-more" data-person="caille">See more</a>
         </div>
         <div class="card5">
           <h1>Jeysi</h1>
           <p>Normal Citizen/IT Student</p>
-          <a href="">See more</a>
+          <a href="#" class="see-more" data-person="jeysi">See more</a>
         </div>
         <div class="card6">
           <h1>Alexander</h1>
           <p>Programmer/It Student</p>
-          <a href="">See more</a>
+          <a href="#" class="see-more" data-person="alexander">See more</a>
         </div>
       </div>
-
-     
-
-     
 
     </main>
     <footer class="footer">
@@ -154,38 +255,158 @@
       </div>
     </footer>
 
+   
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+          <button class="modal-close" id="modalClose">&times;</button>
+          <div id="modalContent">
+            
+          </div>
+      </div>
+    </div>
+
     <script>
      
+    document.addEventListener('DOMContentLoaded', function() {
+    
+      document.getElementById('year').textContent = new Date().getFullYear();
+      
+    
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
 
-document.addEventListener('DOMContentLoaded', function() {
- 
-  document.getElementById('year').textContent = new Date().getFullYear();
-  
- 
-  const fadeElements = document.querySelectorAll('.fade-in');
-  
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-     
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
         
-      } else {
-       
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            
+          } else {
+          
+          }
+        });
+      }, {
+        root: null, 
+        threshold: 0.1, 
+        rootMargin: '0px 0px -50px 0px' 
+      });
+      
+      
+      fadeElements.forEach(element => {
+        observer.observe(element);
+      });
+      
+      // Person data for modals
+      const personData = {
+        caille: {
+            name: "Caille Louis F. Aquino",
+            title: "Project Manager / IT Student",
+            image: "caille.jpg",
+            bio: "Nasa tamang tao ",
+            experience: "Di ko alam ",
+            education: "Bachelor's in Information Technology",
+            skills: ["Project Management", "Agile", "SCRUM", "Risk Assessment", "Team Leadership", "Technical Documentation", "Resource Planning"]
+        },
+        jeysi: {
+            name: "John Christian Castro",
+            title: "Normal Citizen / IT Student",
+            image: "jc.jpg",
+            bio: "Siya pa rin ",
+            experience: "Di ko din alam kung magaling ba ako sa mga nalalaman ko",
+            education: "Currently pursuing Bachelor's in Information Technology",
+            skills: ["User Experience", "User Interface", "Graphic Design", "Web Development", "Basic Networking", "Community Outreach"]
+        },
+        alexander: {
+            name: "John Alexander Sarte",
+            title: "Programmer / IT Student",
+            image: "ming2.jpg",
+            bio: "Lovely Asan kana ba? ",
+            experience: "100 stars sa ML Top 1 Gloo sa Camarines Sur",
+            education: "Bachelor's in Information System(in progress)<br>Various certifications in security-focused programming technologies",
+            skills: ["JavaScript", "Python", "Secure Coding", "React", "Node.js", "Database Security", "API Development", "Git", "Cloud Security"]
+        }
+      };
+
+      // Modal elements
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modalClose = document.getElementById('modalClose');
+      const modalContent = document.getElementById('modalContent');
+      const seeMoreButtons = document.querySelectorAll('.see-more');
+
+      // Open modal with person data
+      function openModal(person) {
+          const data = personData[person];
+          
+          if (!data) return;
+          
+          const content = `
+              <img src="${data.image}" alt="${data.name}" class="profile-image">
+              <h2>${data.name}</h2>
+              <h3>${data.title}</h3>
+              
+              <div class="modal-content">
+                  <div class="bio-section">
+                      <h4>About</h4>
+                      <p>${data.bio}</p>
+                  </div>
+                  
+                  <div class="bio-section">
+                      <h4>Experience</h4>
+                      <p>${data.experience}</p>
+                  </div>
+                  
+                  <div class="bio-section">
+                      <h4>Education</h4>
+                      <p>${data.education}</p>
+                  </div>
+                  
+                  <div class="bio-section">
+                      <h4>Skills</h4>
+                      <div class="skills">
+                          ${data.skills.map(skill => `<span class="skill">${skill}</span>`).join('')}
+                      </div>
+                  </div>
+              </div>
+          `;
+          
+          modalContent.innerHTML = content;
+          modalOverlay.classList.add('active');
+          
+          // Prevent body scrolling when modal is open
+          document.body.style.overflow = 'hidden';
       }
+
+
+      function closeModal() {
+          modalOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+      }
+
+ 
+      seeMoreButtons.forEach(button => {
+          button.addEventListener('click', (e) => {
+              e.preventDefault();
+              const person = button.getAttribute('data-person');
+              openModal(person);
+          });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      
+      modalOverlay.addEventListener('click', (e) => {
+          if (e.target === modalOverlay) {
+              closeModal();
+          }
+      });
+      
+      // Close on escape key
+      document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+              closeModal();
+          }
+      });
     });
-  }, {
-    root: null, 
-    threshold: 0.1, 
-    rootMargin: '0px 0px -50px 0px' 
-  });
-  
-  
-  fadeElements.forEach(element => {
-    observer.observe(element);
-  });
-});
+
     </script>
   </body>
 </html>
