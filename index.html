@@ -12,8 +12,10 @@
       href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap"
       rel="stylesheet" />
    
-   
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.75/build/spline-viewer.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
    
     <style>
      
@@ -132,7 +134,7 @@
 
   </head>
   <body>
-    <spline-viewer class="background" url="https://prod.spline.design/iLpwYDArnt6gIoth/scene.splinecode"></spline-viewer>
+    <spline-viewer  class="background"  url="https://prod.spline.design/4gY3LwQJ3VqNd4Ew/scene.splinecode"></spline-viewer>
     <nav class="navbar fade-in">
       <img src="logo2.png" class="logo2">
       <ul class="menu">
@@ -149,8 +151,8 @@
       <h3 class="text2 fade-in">Fortifying Your Future, One Byte at a Time</h3>
       <button class="btn2 fade-in delay-100" onclick="window.location.href='#get'"> Get Started</button>
       
-
-        
+   
+      
       <section class="about-us" id="about">
         <h1>About Us</h1>
         <div class="about-content fade-in delay-100">
@@ -208,7 +210,7 @@
           <p>Phishing is a common cyber threat that uses deceptive emails to trick individuals into sharing sensitive information.</p>
           <a href="Phishing.html">See more</a>
         </div>
-        <div class="card3" onclick="window.location.href='ransomware.html'">
+        <div class="card3" >
           <img src="malwarec.jpg" alt="">
             <h1>Malware Infections</h1>
             <p>Malware is malicious software that infects systems, steals data, and disrupts operations.</p>
@@ -244,9 +246,10 @@
           <p>Stay Connected</p>
         </div>
         <div class="footer-right">
-          <form action="" class="form">
-            <input type="email" placeholder="Enter your email" required/>
-            <button class="sub">Subscribe</button>
+          <form action="" class="form" id="contactForm">
+            <input type="email" id="email" placeholder="Enter your email" required/>
+            <input type="text" id="message" placeholder="Send us a message" required>
+            <button class="sub" type="submit">Subscribe</button>
           </form>
         </div>
       </div>
@@ -267,8 +270,30 @@
     </div>
 
     <script>
-     
-    document.addEventListener('DOMContentLoaded', function() {
+      (function() {
+        emailjs.init("sje7V_h9_5hl9udfm"); // Replace with your EmailJS public key
+      })();
+
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        
+        emailjs.send("service_w4yj1gk", "template_0r0k0vq", {
+          from_email: email,
+          message: message
+        })
+        .then(function(response) {
+          alert('Message sent successfully!');
+          document.getElementById('contactForm').reset();
+        }, function(error) {
+          alert('Failed to send message. Please try again later.');
+          console.error('Error:', error);
+        });
+      });
+
+      document.addEventListener('DOMContentLoaded', function() {
     
       document.getElementById('year').textContent = new Date().getFullYear();
       
